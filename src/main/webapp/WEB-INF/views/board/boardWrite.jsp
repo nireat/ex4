@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>NOTICE WRITE</h2>
+<h2>${board} WRITE</h2>
 
-<form action="notice${path}" method="post">
+<form action="${board} ${path}" method="post">
 		<input type="hidden" name="num" value="${dto.num}">
 		<p>writer:<input type="text" name="writer" value="${dto.writer}"></p>
 		<p>title:<input type="text" name="title" value="${dto.title}"></p>
