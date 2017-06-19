@@ -8,30 +8,37 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-	import org.junit.Assert;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Assert;
 	import org.junit.Test;
 	import org.junit.runner.RunWith;
-	import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 	import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.choa.board.BoardDTO;
 import com.choa.util.PageMaker;
 
 	
 	public class NoticeDAOTest extends MyAbstractTest{
 		
-	
-		@Inject
+		@Autowired
+		private NoticeDAOImpl noticeDAOImpl;
+		
+		//private datasource datasource 사용하지 않음
+		
+/*		@Inject
 		private NoticeDAOImpl noticeDAO;
 		
 		// unit 케이스로서 작동하려면 annotation으로 반드시 @Test 
-		//@Test
+		@Test
 		public void test() throws Exception{
 			PageMaker pageMaker = new PageMaker(1);
 			List<NoticeDTO> ar=noticeDAO.boardList(rowMaker);
 			assertEquals(0, ar.size());
 			//빨간색: ar의 길이가 0이 아님
 		}
-		/*	
+			
 		@Test
 		public void test2() throws Exception{
 			//4.delete test
@@ -40,5 +47,18 @@ import com.choa.util.PageMaker;
 			//5. 성공 시: 삭제성공 실패 : 그 원인이 junit 콘솔에 나옴
 		}*/
 	
+		@Test
+		public void connectionTest() throws Exception{
+			PageMaker pageMaker = new PageMaker(1, 20);
+	
+			List<BoardDTO> ar=noticeDAOImpl.boardList(pageMaker.getRowMaker());
+			assertNotEquals(0, ar.size());
+		}
+		
+		@Test
+		public void countTest() throws Exception{
+			int count = noticeDAOImpl.boardCount();
+			assertNotEquals(0, count);
+		}
 
 }

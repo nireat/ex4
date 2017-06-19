@@ -21,8 +21,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.choa.ex4" />
-	<context:component-scan base-package="com.choa.notice" />
-	<context:component-scan base-package="com.choa.freeboard" />
+	<context:component-scan base-package="com.choa.ex4" use-default-filters="false">
+		<!-- controller만 검색하겠다 -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<!-- 포함해야 할 필터, expression 에는 경로를 적어줘야 함 -->
+	</context:component-scan>
+	<context:component-scan base-package="com.choa.notice">
+		<!-- controller를 제외하겠다 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<!-- 제외시킬 필터 , expression에는 경로 입력 -->
+	</context:component-scan>
+	<context:component-scan base-package="com.choa.freeboard">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 </beans:beans>

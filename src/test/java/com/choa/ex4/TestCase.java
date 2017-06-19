@@ -1,4 +1,4 @@
-package com.choa.notice;
+package com.choa.ex4;
 
 import static org.junit.Assert.*;
 

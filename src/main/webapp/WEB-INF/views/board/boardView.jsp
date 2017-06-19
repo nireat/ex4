@@ -29,9 +29,10 @@
 		</tr>
 	</table>
 
-<a href="noticeUpdate?num=${view.num}">Update</a>
-<a href="noticeDelete?num=${view.num}">Delete</a>
-<a href="noticeList">List</a>
+
+<a href="${board}Update?num=${view.num}">Update</a>
+<a href="${board}Delete?num=${view.num}">Delete</a>
+<a href="${board}List">List</a>
 
 </body>
 </html>

@@ -27,26 +27,26 @@ public class FreeboardServiceImpl implements BoardService{
 
 	@Override
 	public BoardDTO boardView(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return freeboardDAOImpl.boardView(num);
 	}
 
 	@Override
 	public int boardWrite(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return freeboardDAOImpl.boardWrite(boardDTO);
 	}
 
 	@Override
 	public int boardUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return freeboardDAOImpl.boardUpdate(boardDTO);
 	}
 
 	@Override
 	public int boardDelete(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return freeboardDAOImpl.boardDelete(num);
 	}
 	
 	
