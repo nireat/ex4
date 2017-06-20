@@ -17,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 	import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.choa.board.BoardDTO;
+import com.choa.util.ListInfo;
 import com.choa.util.PageMaker;
 
 	
@@ -47,18 +48,29 @@ import com.choa.util.PageMaker;
 			//5. 성공 시: 삭제성공 실패 : 그 원인이 junit 콘솔에 나옴
 		}*/
 	
-		@Test
+/*		@Test
 		public void connectionTest() throws Exception{
 			PageMaker pageMaker = new PageMaker(1, 20);
 	
-			List<BoardDTO> ar=noticeDAOImpl.boardList(pageMaker.getRowMaker());
-			assertNotEquals(0, ar.size());
-		}
+			List<BoardDTO> ar=noticeDAOImpl.boardList(pageMaker.getRowMaker(), "writer", "");
+			System.out.println(ar.get(0).getWriter());
+			//ar.get(컬럼) , size : 컬럼 배열의 크기
+		}*/
 		
-		@Test
+/*		@Test
 		public void countTest() throws Exception{
 			int count = noticeDAOImpl.boardCount();
 			assertNotEquals(0, count);
+		}*/
+		
+		@Test
+		public void connectionTest() throws Exception{
+			ListInfo listInfo = new ListInfo();
+			listInfo.setFind("nireat");
+			listInfo.setSearch("writer");
+			int count = noticeDAOImpl.boardCount(listInfo);
+			System.out.println(count);
+			assertNotEquals(0, count);
 		}
-
+		
 }

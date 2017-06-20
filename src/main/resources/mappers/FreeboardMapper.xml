@@ -26,9 +26,6 @@
   	 (select * from freeboard order by num desc) F) 
   	 where R between #{startRow} and #{lastRow}
   	</select>
-  	<delete id="delete" parameterType="java.lang.Integer">
-  		delete freeboard where num=#{num}
-  	</delete>
   	<select id="count">
   		select count(nvl(num,0)) from freeboard
   	</select>

@@ -4,13 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<!-- 여기서는 세미콜론 찍지 않음 -->
   <mapper namespace="NoticeMapper">
-	<select id="count" resultType="int">
+  	<sql id="search">
+  		<trim prefix="where" prefixOverrides="and || or">		
+		<if test="search == 'title'">
+			 title like '%' || #{find} || '%'
+		</if>
+		<if test="search == 'writer'">
+			 writer like '%' || #{find} || '%'
+		</if>
+		<if test="search == 'contents'">
+			 contents like '%' || #{find} || '%'
+		</if>
+		</trim> 
+  	</sql>
+
+	<select id="count" resultType="int" parameterType="com.choa.util.ListInfo">
 		select count(nvl(num,0)) from notice 
+		<include refid="search"></include>
 	</select>
-	<select id="list" resultType="com.choa.notice.NoticeDTO" parameterType="com.choa.util.RowMaker" >
+	<select id="list" resultType="com.choa.notice.NoticeDTO" parameterType="com.choa.util.ListInfo" >
 		select * from
 		(select rownum R, N.* from
-		(select * from notice order by num desc) N)
+		(select * from notice
+		<include refid="search"></include>
+		 order by num desc) N)
 		where R between #{startRow} and #{lastRow} 
 	</select>
 	<select id="view" resultType="com.choa.notice.NoticeDTO" parameterType="java.lang.Integer">
@@ -29,5 +46,5 @@
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete notice where num=#{num}
 	</delete>
-	
+
   </mapper>

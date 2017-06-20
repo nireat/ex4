@@ -17,12 +17,12 @@ public class FreeboardServiceImpl implements BoardService{
 	private FreeboardDAOImpl freeboardDAOImpl;
 	
 	@Override
-	public List<BoardDTO> boardList(int curPage) throws Exception {
+	public List<BoardDTO> boardList(int curPage, String search, String find) throws Exception {
 		int totalCount = freeboardDAOImpl.boardCount();
 		PageMaker pageMaker = new PageMaker(curPage);
 		MakePage makePage = pageMaker.getMakePage(totalCount);
 		
-		return freeboardDAOImpl.boardList(pageMaker.getRowMaker());
+		return freeboardDAOImpl.boardList(pageMaker.getRowMaker(), search, find);
 	}
 
 	@Override

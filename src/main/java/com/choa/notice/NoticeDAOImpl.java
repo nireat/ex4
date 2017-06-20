@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.choa.board.BoardDAO;
 import com.choa.board.BoardDTO;
 import com.choa.util.DBConnect;
+import com.choa.util.ListInfo;
 import com.choa.util.RowMaker;
 
 import oracle.jdbc.proxy.annotation.Pre;
@@ -39,8 +41,10 @@ public class NoticeDAOImpl implements BoardDAO{
 
 	
 	@Override
-	public List<BoardDTO> boardList(RowMaker rowMaker) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"list", rowMaker);
+	public List<BoardDTO> boardList(ListInfo listInfo) throws Exception {
+		
+		
+		return sqlSession.selectList(NAMESPACE+"list", listInfo);
 	}
 
 	@Override
@@ -69,9 +73,9 @@ public class NoticeDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public int boardCount() throws Exception {
+	public int boardCount(ListInfo listInfo) throws Exception {
 
-		return sqlSession.selectOne(NAMESPACE+"count");
+		return sqlSession.selectOne(NAMESPACE+"count", listInfo);
 	}
 
 	@Override
