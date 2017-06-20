@@ -7,7 +7,6 @@
 	<select id="count" resultType="int">
 		select count(nvl(num,0)) from notice 
 	</select>
-	
 	<select id="list" resultType="com.choa.notice.NoticeDTO" parameterType="com.choa.util.RowMaker" >
 		select * from
 		(select rownum R, N.* from

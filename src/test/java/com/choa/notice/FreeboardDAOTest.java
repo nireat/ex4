@@ -1,5 +1,6 @@
 package com.choa.notice;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -21,6 +22,6 @@ public class FreeboardDAOTest extends MyAbstractTest{
 		freeboardDTO.setContents("ddddddddddddddd miss you");
 		int result = freeboardDAOImpl.boardWrite(freeboardDTO);
 		
-		assertNotNull(1, result);
+		assertEquals(1, result);
 	}
 }

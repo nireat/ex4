@@ -11,6 +11,19 @@
 	<!-- List 제목 -->
 	<h1>${board}</h1>
 	
+	<div>
+		<form action="${board}List">
+			<select name="search">
+				<option value="title">TITLE</option>
+				<option value="writer"> </option>
+				<option value="contents"></option>
+			</select>
+			<input type="text" name="find">
+			<input type="submit" value="SEARCH">
+		</form>
+	</div>
+	
+	
 	<table>
 		<tr>
 			<td>NUM</td><td>TITLE</td><td>WRITER</td><td>DATE</td><td>HIT</td>
